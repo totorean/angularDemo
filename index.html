@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="darkskyForecast">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="node_modules/normalize/normalize.css">
+    <link rel="stylesheet" href="app.css">
+    <!--  <script src="node-modules/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>-->
+    <link rel="stylesheet" href="app/components/location/locationStyle.css">
+
+    <script src="node_modules/angular/angular.js"></script>
+    <script src="node_modules/angular-route/angular-route.js"></script>
+    <script src="app.js"></script>
+    <script src="app/view1/view1.js"></script>
+    <script src="app/view2/view2.js"></script>
+    <script src="app/components/Components.js"></script>
+    <script src="app/components/location/locationDirective.js"></script>  
+</head>
+<body>
+  <div ng-view></div>
+</body>
+</html>

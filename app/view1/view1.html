@@ -1,0 +1,5 @@
+<p>Select a city to display the weather</p>
+<div class="locations-list" ng-if="locations" >
+    <location ng-repeat="location in locations" tooltip = {{location.tooltip}} 
+              label={{location.label}} icon={{location.icon}} ng-click="displayWeather(location.id)"></location>
+</div>
