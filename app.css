@@ -2,20 +2,6 @@
 * {
     box-sizing: border-box;
     font-family: Verdana, Geneva, sans-serif;
+    color: #222222;
 }
 
-.locations-list {
-    top: calc(50% - 12em);
-    position: absolute;
-    left: calc(50% - 9em);
-    width: 18em;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-p {
-    text-align: center;
-    color: #cdcdcd;
-}

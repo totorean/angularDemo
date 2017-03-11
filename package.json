@@ -4,18 +4,13 @@
   "description": "a forecast from darksky",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "http-server -a localhost -p 8000 -c-1 ."
   },
   "author": "Ami",
   "license": "MIT",
   "dependencies": {
     "angular": "^1.6.3",
     "angular-route": "^1.6.3",
-    "modernizr": "^3.3.1",
-    "normalize": "^5.0.0",
-    "skycons": "^1.0.0"
-  },
-  "scripts": {
-    "start": "http-server -a localhost -p 8000 -c-1 ."
+    "normalize": "^5.0.0"
   }
 }

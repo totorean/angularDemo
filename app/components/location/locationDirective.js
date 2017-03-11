@@ -1,6 +1,7 @@
 Components.directive('location', function () {
     return {
-        restrict: 'E', //E = element, A = attribute, C = class, M = comment         
+        restrict: 'E', //E = element, A = attribute, C = class, M = comment   
+        replace: true,
         scope: {
             //@ reads the attribute value, = provides two-way binding, & works with functions
             tooltip: '@',

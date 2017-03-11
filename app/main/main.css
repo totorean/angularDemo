@@ -1,0 +1,15 @@
+.main-view .locations-list {
+    margin-top: 10em;
+    position: absolute;
+    left: calc(50% - 14em);
+    min-width: 18em;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.main-view p {
+    text-align: center;
+    color: #cdcdcd;
+}
