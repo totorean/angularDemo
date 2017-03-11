@@ -9,8 +9,8 @@ angular.module('darkskyForecast.main', ['ngRoute'])
   });
 }])
 
-.controller('MainCtrl', ['$scope', 'coordProvider', 'forecastProvider',
-    function Main($scope, coordProvider, forecastProvider) {
+.controller('MainCtrl', ['$scope', '$location', 'coordProvider', 'forecastProvider',
+    function Main($scope, $location, coordProvider, forecastProvider) {
         $scope.icon = "rain";
         $scope.locations = [
             {   tooltip: 'Timisoara',
@@ -59,18 +59,21 @@ angular.module('darkskyForecast.main', ['ngRoute'])
                 {
                     var loc = JSON.parse(localStorage.getItem(location));
                     localStorage.setItem(location, JSON.stringify({
-                        label: locationDetails.label,
+                        label: loc.label,
                         coords: loc.coords,
                         timestamp: Date.now(),
                         temperature: weather.temperature,
                         icon: weather.icon
-                    }));                                  
+                    })); 
+                    $location.path('/forecast/' + location);
                 });
             } else {
                 var loc = JSON.parse(savedLoc);
                 if(loc.timestamp && Math.abs(Date.now() - loc.timestamp) / 60000 < 60) {
-                    //do nothing just send current saved data
+                    //all data available
+                    $location.path('/forecast/' + location);
                 } else {
+                    //refresh weather data
                     forecastProvider.getWeather( loc.coords )      
                     .then(function(weather){
                         localStorage.setItem(location, JSON.stringify({
@@ -79,7 +82,8 @@ angular.module('darkskyForecast.main', ['ngRoute'])
                             timestamp: Date.now(),
                             temperature: weather.temperature,
                             icon: weather.icon
-                        }));                                  
+                        })); 
+                        $location.path('/forecast/' + location);
                     });
                 }
             }
