@@ -9,9 +9,9 @@ Components.directive('location', function () {
             icon: '@'
         },
         template: '<div class="location" title={{tooltip}}>' +
-                    '<img class="location-icon" ng-src="./assets/icons/{{icon}}.png"/>' +
-                    '<div class="location-label">{{label}}</div>' +
-                  '</div>',
-        link: function ($scope, element, attrs) { } //DOM manipulation
+            '<img class="location-icon" ng-src="./assets/icons/{{icon}}.png"/>' +
+            '<div class="location-label">{{label}}</div>' +
+            '</div>',
+        link: function ($scope, element, attrs) {} //DOM manipulation
     }
 });

@@ -6,18 +6,18 @@ Components.directive('skycon', function () {
             //@ reads the attribute value, = provides two-way binding, & works with functions
             icon: '@',
             size: '@',
-            color: '@'        
+            color: '@'
         },
         template: '<canvas class="skycon"></canvas>',
-        link: function ($scope, element, attrs) { 
+        link: function ($scope, element, attrs) {
             element[0].height = $scope.size || 64;
             element[0].width = $scope.size || 64;
-            
+
             var config = {
                 color: $scope.color || "black"
             };
 
-            var skycons = new Skycons( config );
+            var skycons = new Skycons(config);
             skycons.add(element[0], $scope.icon);
             // start animation!
             skycons.play();

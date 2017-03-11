@@ -1,16 +1,17 @@
 {
-  "name": "darkskyForecast",
-  "version": "0.0.0",
-  "description": "a forecast from darksky",
-  "main": "app.js",
-  "scripts": {
-    "start": "http-server -a localhost -p 8000 -c-1 ."
-  },
-  "author": "Ami",
-  "license": "MIT",
-  "dependencies": {
-    "angular": "^1.6.3",
-    "angular-route": "^1.6.3",
-    "normalize": "^5.0.0"
-  }
+    "name": "darkskyForecast",
+    "version": "0.0.0",
+    "description": "a forecast from darksky",
+    "main": "app.js",
+    "scripts": {
+        "start": "http-server -a localhost -p 8000 -c-1 ."
+    },
+    "author": "Ami",
+    "license": "MIT",
+    "dependencies": {
+        "angular": "^1.6.3",
+        "angular-route": "^1.6.3",
+        "normalize": "^5.0.0",
+        "skycons": "https://github.com/darkskyapp/skycons#commit-ish"
+    }
 }

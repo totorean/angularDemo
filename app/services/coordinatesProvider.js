@@ -1,8 +1,8 @@
 'use strict';
-
-darkskyForecast.factory('coordProvider', function ($q, $http, GOOGLE_API) {
+angular.module('service.coordProvider', [])
+    .factory('coordProvider', function ($q, $http, GOOGLE_API) {
         return {
-            getCoords : function (location) {
+            getCoords: function (location) {
                 var deferred = $q.defer();
 
                 $http({
@@ -19,13 +19,13 @@ darkskyForecast.factory('coordProvider', function ($q, $http, GOOGLE_API) {
                     } else {
                         deferred.reject(data.status);
                     }
-                    
-                  }, function errorCallback(data) {
+
+                }, function errorCallback(data) {
                     deferred.reject(data.error_message);
-                  });
-                
+                });
+
                 //return a promise that needs to be resolved before data can be used
                 return deferred.promise;
             }
-        }    
+        }
     });
