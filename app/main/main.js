@@ -9,52 +9,23 @@ angular.module('darkskyForecast.main', ['ngRoute'])
     });
 }])
 
-.controller('MainCtrl', ['$scope', '$location', 'coordProvider', 'forecastProvider',
-    function Main($scope, $location, coordProvider, forecastProvider) {
-        $scope.icon = "rain";
-        $scope.locations = [
-            {
-                tooltip: 'Timisoara',
-                label: 'Timisoara',
-                icon: 'timisoara',
-                id: 'timisoara'
-            },
-            {
-                tooltip: 'Cluj-Napoca',
-                label: 'Cluj-Napoca',
-                icon: 'cluj-napoca',
-                id: 'cluj'
-            },
-            {
-                tooltip: 'Iasi',
-                label: 'Iasi',
-                icon: 'iasi',
-                id: 'iasi'
-            },
-            {
-                tooltip: 'Bucuresti',
-                label: 'Bucuresti',
-                icon: 'bucuresti',
-                id: 'bucuresti'
-            },
-            {
-                tooltip: 'Constanta',
-                label: 'Constanta',
-                icon: 'constanta',
-                id: 'constanta'
-            }
-
-        ];
+.controller('MainCtrl', ['$scope', '$location', 'coordService', 'forecastService', 'locationsService',
+    function Main($scope, $location, coordProvider, forecastProvider, locationsProvider) {
+        $scope.locations = [];
+        locationsProvider.getLocations()
+            .then(function (locations) {
+                $scope.locations = locations;
+            })
 
         $scope.displayWeather = function (index) {
             var locationDetails = $scope.locations[index];
             var location = locationDetails.id;
             var savedLoc = localStorage.getItem(location);
+
             if (!savedLoc) { //non existent location in storage
                 coordProvider.getCoords(location)
                     .then(function (coords) {
                         localStorage.setItem(location, JSON.stringify({
-                            label: locationDetails.label,
                             coords: coords
                         }));
                         return forecastProvider.getWeather(coords);
@@ -62,7 +33,7 @@ angular.module('darkskyForecast.main', ['ngRoute'])
                     .then(function (weather) {
                         var loc = JSON.parse(localStorage.getItem(location));
                         localStorage.setItem(location, JSON.stringify({
-                            label: loc.label,
+                            label: locationDetails.label,
                             coords: loc.coords,
                             timestamp: Date.now(),
                             temperature: weather.temperature,
@@ -72,11 +43,9 @@ angular.module('darkskyForecast.main', ['ngRoute'])
                     });
             } else {
                 var loc = JSON.parse(savedLoc);
-                if (loc.timestamp && Math.abs(Date.now() - loc.timestamp) / 60000 < 60) {
-                    //all data available
+                if (loc.timestamp && Math.abs(Date.now() - loc.timestamp) / 60000 < 60) { //all data available
                     $location.path('/forecast/' + location);
-                } else {
-                    //refresh weather data
+                } else { //refresh only weather data
                     forecastProvider.getWeather(loc.coords)
                         .then(function (weather) {
                             localStorage.setItem(location, JSON.stringify({

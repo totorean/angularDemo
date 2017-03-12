@@ -19,6 +19,10 @@
     <script src="node_modules/angular/angular.js"></script>
     <script src="node_modules/angular-route/angular-route.js"></script>
     <script src="node_modules/skycons/skycons.js"></script>
+</head>
+
+<body>
+    <div ng-view></div>
 
     <!--    Components     -->
     <script src="app/components/Components.js"></script>
@@ -26,19 +30,15 @@
     <script src="app/components/skycon/skyconDirective.js"></script>
 
     <!--    Services     -->
-    <script src="app/services/Services.js"></script>
-    <script src="app/services/coordinatesProvider.js"></script>
-    <script src="app/services/forecastProvider.js"></script>
+    <script src="app/services/coordinatesService.js"></script>
+    <script src="app/services/forecastService.js"></script>
 
     <script src="app.js"></script>
     <script src="app/main/main.js"></script>
+    <script src="app/main/locationsService.js"></script>
     <script src="app/forecast/forecast.js"></script>
-
-
-</head>
-
-<body>
-    <div ng-view></div>
 </body>
+
+
 
 </html>

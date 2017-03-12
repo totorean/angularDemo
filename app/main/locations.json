@@ -1,0 +1,30 @@
+{
+    "locations": [{
+            "tooltip": "Timisoara",
+            "label": "Timisoara",
+            "icon": "timisoara",
+            "id": "timisoara"
+		}, {
+            "tooltip": "Cluj-Napoca",
+            "label": "Cluj-Napoca",
+            "icon": "cluj-napoca",
+            "id": "cluj"
+		}, {
+            "tooltip": "Iasi",
+            "label": "Iasi",
+            "icon": "iasi",
+            "id": "iasi"
+		}, {
+            "tooltip": "Bucuresti",
+            "label": "Bucuresti",
+            "icon": "bucuresti",
+            "id": "bucuresti"
+		}, {
+            "tooltip": "Constanta",
+            "label": "Constanta",
+            "icon": "constanta",
+            "id": "constanta"
+		}
+
+	]
+}

@@ -4,8 +4,8 @@
 var darkskyForecast = angular.module('darkskyForecast', [
   'ngRoute',
   'Components',
-  'service.forecastProvider',
-  'service.coordProvider',
+  'service.forecastService',
+  'service.coordService',
   'darkskyForecast.main',
   'darkskyForecast.forecast',
 ])
