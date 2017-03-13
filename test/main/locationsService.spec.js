@@ -1,17 +1,16 @@
 describe('Locations provider', function () {
+    // Before each test load our darkskyForecast.main module
+    beforeEach(module('darkskyForecast.main'));
+
     var locationsService;
     var $httpBackend;
 
-    // Before each test load our api.users module
-    beforeEach(module('darkskyForecast.main'));
-
-    // Before each test set our injected Users factory (_Users_) to our local Users variable
     beforeEach(inject(function (_locationsService_, _$httpBackend_) {
         locationsService = _locationsService_;
         $httpBackend = _$httpBackend_;
     }));
 
-    it("when loading the locations", function () {
+    it("should load the locations", function () {
         $httpBackend.whenGET('app/main/locations.json').respond({
             locations: [{
                 tooltip: "Timisoara",

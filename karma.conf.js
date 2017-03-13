@@ -21,7 +21,10 @@ module.exports = function (config) {
               './app.js',
               './app/main/main.js',
               './app/main/locationsService.js',
-              './test/main/locationsService.spec.js'
+              './app/forecast/forecast.js',
+              './app/components/Components.js',
+              './app/components/location/locationDirective.js',
+              './test/**/*.js'
     ],
 
 
