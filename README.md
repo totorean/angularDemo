@@ -1,10 +1,13 @@
 # Synopsis
 
-A darksky API consumer UI
+A darksky API consumer UI.
+Enable cross origin resource sharing in your browser to be able to access darksky from localhost or go to forecastService.js and use the dummy code.
 
 # Installation
 
 npm install
+
+npm install -g gulp
 
 Use 'gulp connect' to start the application then go to http://localhost:8000/index.html#!/main
 

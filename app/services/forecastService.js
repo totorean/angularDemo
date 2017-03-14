@@ -23,7 +23,8 @@ angular.module('service.forecastService', [])
             var deferred = $q.defer();
 
             var url = [DARKSKY_API.URL, DARKSKY_API.KEY, '/', coords.lat, ',', coords.lng, '?exclude=hourly,daily,flags'].join('');
-            /*$http({
+            //START - comment this block if you want to use the dummy
+            $http({
                     method: 'GET',
                     timeout: 300000,
                     url: url
@@ -38,9 +39,11 @@ angular.module('service.forecastService', [])
                 })
                 .catch(function (data) {
                     deferred.reject(data.message);
-                });*/
+                });
+            //END - comment this block if you want to use the dummy
 
-            setTimeout(function () {
+            //simulate the call
+            /*setTimeout(function () {
                 deferred.resolve({
                     apparentTemperature: 41.42,
                     cloudCover: 0.3,
@@ -58,7 +61,7 @@ angular.module('service.forecastService', [])
                     windBearing: 325,
                     windSpeed: 4.95
                 });
-            }, 700);
+            }, 700);*/
 
             //return a promise that needs to be resolved before data can be used
             return deferred.promise;
