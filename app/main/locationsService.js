@@ -9,10 +9,11 @@
 'use strict';
 
 angular.module('darkskyForecast.main')
-    .service('locationsService', function ($q, $http) {
+    .service('locationsService', ['$q', '$http', function ($q, $http) {
 
         /**
-         * @ngdoc function
+         * @ngdoc method
+         * @methodOf locationsService
          * @name getLocations
          *
          * @returns {Array} list of locations
@@ -31,4 +32,4 @@ angular.module('darkskyForecast.main')
 
             return deferred.promise;
         }
-    });
+    }]);

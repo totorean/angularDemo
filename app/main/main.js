@@ -26,7 +26,8 @@ angular.module('darkskyForecast.main', ['ngRoute'])
             })
 
         /**
-         * @ngdoc function
+         * @ngdoc method
+         * @methodOf MainCtrl
          * @name displayWeather
          * @description A function that fetches the coordinates and the current weather for a 
          * selected location and stores them in the local storage

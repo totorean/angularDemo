@@ -1,5 +1,5 @@
 /**
- * @ngdoc function
+ * @ngdoc service
  * @name forecastService
  *
  * @description
@@ -8,10 +8,11 @@
 'use strict';
 
 angular.module('service.forecastService', [])
-    .service('forecastService', function ($q, $http, $sce, DARKSKY_API) {
+    .service('forecastService', ['$q', '$http', '$sce', 'DARKSKY_API', function ($q, $http, $sce, DARKSKY_API) {
 
         /**
-         * @ngdoc function
+         * @ngdoc method
+         * @methodOf forecastService
          * @name getWeather
          *
          * @param {Object} coords an object with lat (latitude) and lng (longitude) parameters
@@ -62,4 +63,4 @@ angular.module('service.forecastService', [])
             //return a promise that needs to be resolved before data can be used
             return deferred.promise;
         }
-    });
+    }]);

@@ -31,12 +31,6 @@ gulp.task('ngdocs', [], function () {
 
 
 // tasks
-gulp.task('lint', function () {
-    gulp.src('./app/**/*.js')
-        .pipe(jshint())
-        .pipe(jshint.reporter('default'))
-        .pipe(jshint.reporter('fail'));
-});
 gulp.task('clean', function () {
     gulp.src('./dist/*')
         .pipe(clean({
@@ -48,14 +42,20 @@ gulp.task('minify-css', function () {
         comments: true,
         spare: true
     };
-    gulp.src(['./app/**/*.css', './app.css'])
+    gulp.src('./app.css')
         .pipe(minifyCSS(opts))
-        .pipe(gulp.dest('./dist/'))
+        .pipe(gulp.dest('./dist/'));
+    gulp.src('./app/**/*.css')
+        .pipe(minifyCSS(opts))
+        .pipe(gulp.dest('./dist/app/'));
 });
 gulp.task('minify-js', function () {
+    gulp.src('./app.js')
+        .pipe(uglify())
+        .pipe(gulp.dest('./dist/'));
     gulp.src('./app/**/*.js')
         .pipe(uglify())
-        .pipe(gulp.dest('./dist/'))
+        .pipe(gulp.dest('./dist/app/'));
 });
 gulp.task('copy-npm-dependencies', function () {
     gulp.src(gnf(), {
@@ -64,13 +64,24 @@ gulp.task('copy-npm-dependencies', function () {
         .pipe(gulp.dest('./dist/'));
 });
 gulp.task('copy-html-files', function () {
-    gulp.src(['./app/**/*.html', './index.html'])
-        .pipe(gulp.dest('dist/'));
+    gulp.src('./index.html')
+        .pipe(gulp.dest('./dist/'));
+    gulp.src('./app/**/*.html')
+        .pipe(gulp.dest('./dist/app/'));
+});
+gulp.task('copy-json-files', function () {
+    gulp.src('./app/**/*.json')
+        .pipe(gulp.dest('./dist/app/'));
+});
+gulp.task('copy-assets', function () {
+    return gulp.src(['./assets/**/*'], {
+        base: '.'
+    }).pipe(gulp.dest('dist'));
 });
 // Run tests once and exit
 gulp.task('test', function (done) {
     new Server({
-        configFile: './karma.conf.js',
+        configFile: __dirname + '/karma.conf.js',
         singleRun: true
     }, done).start();
 });
@@ -78,7 +89,7 @@ gulp.task('test', function (done) {
 // detect changes on files and rerun tests
 gulp.task('tdd', function (done) {
     new Server({
-        configFile: './karma.conf.js'
+        configFile: __dirname + '/karma.conf.js'
     }, done).start();
 });
 
@@ -92,16 +103,16 @@ gulp.task('connect', function () {
 //run this task to see how the distribution files look before deployment
 gulp.task('connectDist', function () {
     connect.server({
-        root: '.',
+        root: './dist',
         port: 9000
     });
 });
 
 
 // default task
-gulp.task('default', ['lint', 'tdd', 'connect']);
+gulp.task('default', ['tdd', 'connect']);
 gulp.task('build', function () {
     runSequence(
-    ['clean'], ['test', 'lint', 'minify-css', 'minify-js', 'copy-html-files', 'copy-npm-dependencies', 'connectDist']
+    ['clean'], ['test'], ['minify-css', 'minify-js', 'copy-html-files', 'copy-json-files', 'copy-assets', 'copy-npm-dependencies'], ['connectDist']
     );
 });

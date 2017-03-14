@@ -1,53 +1,48 @@
 /**
- * @ngdoc overview 
- * @name service.coordService
- */
-'use strict';
-
-angular.module('service.coordService', [])
-
-/**
- * @ngdoc method
- * @methodOf service.coordService.coordService
+ * @ngdoc service
  * @name coordService
  *
  * @description
  * A service used for fetching the coordinates of a location via http.
  */
-.service('coordService', function ($q, $http, GOOGLE_API) {
+'use strict';
 
-    /**
-     * @ngdoc function
-     * @name getCoords
-     *
-     * @param {String} location the location name
-     * @returns {Object} object containing the latitude and longitude
-     *
-     */
-    this.getCoords = function (location) {
-        var deferred = $q.defer();
+angular.module('service.coordService', [])
+    .service('coordService', ['$q', '$http', 'GOOGLE_API', function ($q, $http, GOOGLE_API) {
 
-        $http({
-                method: 'GET',
-                timeout: 300000,
-                url: GOOGLE_API.URL,
-                params: {
-                    'address': location,
-                    'key': GOOGLE_API.KEY
-                }
-            })
-            .then(function (data) {
-                if (parseInt(data.status) === 200) {
-                    deferred.resolve(data.data.results[0].geometry.location);
-                } else {
-                    deferred.reject(data.status);
-                }
+        /**
+         * @ngdoc method
+         * @methodOf coordService
+         * @name getCoords
+         *
+         * @param {String} location the location name
+         * @returns {Object} object containing the latitude and longitude
+         *
+         */
+        this.getCoords = function (location) {
+            var deferred = $q.defer();
 
-            })
-            .catch(function (data) {
-                deferred.reject(data.error_message);
-            });
+            $http({
+                    method: 'GET',
+                    timeout: 300000,
+                    url: GOOGLE_API.URL,
+                    params: {
+                        'address': location,
+                        'key': GOOGLE_API.KEY
+                    }
+                })
+                .then(function (data) {
+                    if (parseInt(data.status) === 200) {
+                        deferred.resolve(data.data.results[0].geometry.location);
+                    } else {
+                        deferred.reject(data.status);
+                    }
 
-        return deferred.promise;
-    }
-});
+                })
+                .catch(function (data) {
+                    deferred.reject(data.error_message);
+                });
+
+            return deferred.promise;
+        }
+}]);

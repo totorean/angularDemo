@@ -1,7 +1,6 @@
 /**
  * @ngdoc directive
  * @name location
- * @plm
  *
  * @description
  * A directive for rendering an icon with label underneath and a tooltip
