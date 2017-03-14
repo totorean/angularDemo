@@ -8,8 +8,7 @@
     "dependencies": {
         "angular": "^1.6.3",
         "angular-route": "^1.6.3",
-        "normalize": "^0.3.1",
-        "skycons": "git+https://github.com/darkskyapp/skycons.git#master"
+        "normalize": "^0.3.1"
     },
     "devDependencies": {
         "angular": "^1.6.3",
