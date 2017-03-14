@@ -1,3 +1,11 @@
+/**
+ * @ngdoc controller
+ * @name MainCtrl
+ *
+ * @description
+ * A controller for fetching the coordinates and the current
+ * weather for a selected location and storing them in the local storage
+ */
 'use strict';
 
 angular.module('darkskyForecast.main', ['ngRoute'])
@@ -17,6 +25,15 @@ angular.module('darkskyForecast.main', ['ngRoute'])
                 $scope.locations = locations;
             })
 
+        /**
+         * @ngdoc function
+         * @name displayWeather
+         * @description A function that fetches the coordinates and the current weather for a 
+         * selected location and stores them in the local storage
+         *
+         * @param {Number} index the clicked location index
+         *
+         */
         $scope.displayWeather = function (index) {
             var locationDetails = $scope.locations[index];
             var location = locationDetails.id;

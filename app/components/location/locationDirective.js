@@ -1,3 +1,12 @@
+/**
+ * @ngdoc directive
+ * @name location
+ * @plm
+ *
+ * @description
+ * A directive for rendering an icon with label underneath and a tooltip
+ *
+ */
 Components.directive('location', function () {
     return {
         restrict: 'E', //E = element, A = attribute, C = class, M = comment   

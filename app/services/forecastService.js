@@ -1,8 +1,23 @@
+/**
+ * @ngdoc function
+ * @name forecastService
+ *
+ * @description
+ * A service used for fetching the current weather data via http.
+ */
 'use strict';
 
 angular.module('service.forecastService', [])
     .service('forecastService', function ($q, $http, $sce, DARKSKY_API) {
 
+        /**
+         * @ngdoc function
+         * @name getWeather
+         *
+         * @param {Object} coords an object with lat (latitude) and lng (longitude) parameters
+         * @returns {Object} object containing current weather data
+         *
+         */
         this.getWeather = function (coords) {
             var deferred = $q.defer();
 

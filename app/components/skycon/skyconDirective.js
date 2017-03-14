@@ -1,3 +1,10 @@
+/**
+ * @ngdoc directive
+ * @name skycon
+ *
+ * @description
+ * A directive for rendering an icon from skycons
+ */
 Components.directive('skycon', function () {
     return {
         restrict: 'E', //E = element, A = attribute, C = class, M = comment   

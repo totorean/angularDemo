@@ -1,3 +1,10 @@
+/**
+ * @ngdoc controller
+ * @name ForecastCtrl
+ *
+ * @description
+ * A controller that loads the data for a location making it available for the view
+ */
 'use strict';
 
 angular.module('darkskyForecast.forecast', ['ngRoute'])
