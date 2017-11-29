@@ -6,7 +6,7 @@
  * A directive for rendering an icon with label underneath and a tooltip
  *
  */
-Components.directive('location', function () {
+Shared.directive( 'location', function() {
     return {
         restrict: 'E', //E = element, A = attribute, C = class, M = comment   
         replace: true,
@@ -16,10 +16,8 @@ Components.directive('location', function () {
             label: '@',
             icon: '@'
         },
-        template: '<div class="location" title={{tooltip}}>' +
-            '<img class="location-icon" ng-src="./assets/icons/{{icon}}.png"/>' +
-            '<div class="location-label">{{label}}</div>' +
-            '</div>',
-        link: function ($scope, element, attrs) {} //DOM manipulation
+        templateUrl: 'locationView.html',
+        link: function( $scope, element, attrs ) {
+        } //DOM manipulation
     }
-});
+} );

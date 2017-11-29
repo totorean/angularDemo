@@ -1,3 +1,3 @@
 'use strict';
 
-var Components = angular.module('Components', []);
+var Shared = angular.module('Shared', []);

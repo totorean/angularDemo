@@ -23,7 +23,7 @@ angular.module('darkskyForecast.main', ['ngRoute'])
         locationsProvider.getLocations()
             .then(function (locations) {
                 $scope.locations = locations;
-            })
+            });
 
         /**
          * @ngdoc method

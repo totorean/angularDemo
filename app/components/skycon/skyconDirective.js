@@ -5,7 +5,7 @@
  * @description
  * A directive for rendering an icon from skycons
  */
-Components.directive('skycon', function () {
+Shared.directive( 'skycon', function() {
     return {
         restrict: 'E', //E = element, A = attribute, C = class, M = comment   
         replace: true,
@@ -15,19 +15,19 @@ Components.directive('skycon', function () {
             size: '@',
             color: '@'
         },
-        template: '<canvas class="skycon"></canvas>',
-        link: function ($scope, element, attrs) {
-            element[0].height = $scope.size || 64;
-            element[0].width = $scope.size || 64;
+        templateUrl: 'skyconView.html',
+        link: function( $scope, element, attrs ) {
+            element[ 0 ].height = $scope.size || 64;
+            element[ 0 ].width = $scope.size || 64;
 
             var config = {
                 color: $scope.color || "black"
             };
 
-            var skycons = new Skycons(config);
-            skycons.add(element[0], $scope.icon);
+            var skycons = new Skycons( config );
+            skycons.add( element[ 0 ], $scope.icon );
             // start animation!
             skycons.play();
         }
     }
-});
+} );
