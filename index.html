@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="darkskyForecast">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="node_modules/normalize/normalize.css">
-    <link rel="stylesheet" href="app.css">
-    <link rel="stylesheet" href="app/main/main.css">
-    <link rel="stylesheet" href="app/forecast/forecast.css">
+    <link rel="stylesheet" href="assets/scss/app.css">
+    <link rel="stylesheet" href="app/sections/main/mainStyle.css">
+    <link rel="stylesheet" href="app/sections/forecast/forecastStyle.css">
 
     <!--    Components stylesheets     -->
     <link rel="stylesheet" href="app/components/location/locationStyle.css">
@@ -22,23 +21,20 @@
 </head>
 
 <body>
-    <div ng-view></div>
+<div ng-view></div>
 
-    <!--    Components     -->
-    <script src="app/components/Shared.js"></script>
-    <script src="app/components/location/locationDirective.js"></script>
-    <script src="app/components/skycon/skyconDirective.js"></script>
+<!--    Components     -->
+<script src="app/components/Components.js"></script>
+<script src="app/components/location/locationDirective.js"></script>
+<script src="app/components/skycon/skyconDirective.js"></script>
 
-    <!--    Services     -->
-    <script src="app/services/coordinatesService.js"></script>
-    <script src="app/services/forecastService.js"></script>
+<!--    Services     -->
+<script src="app/services/coordinatesService.js"></script>
+<script src="app/services/forecastService.js"></script>
 
-    <script src="app.js"></script>
-    <script src="app/main/mainController.js"></script>
-    <script src="app/main/locationsService.js"></script>
-    <script src="app/forecast/forecast.js"></script>
+<script src="app/app.js"></script>
+<script src="app/sections/main/mainController.js"></script>
+<script src="app/sections/main/locationsService.js"></script>
+<script src="app/sections/forecast/forecastController.js"></script>
 </body>
-
-
-
 </html>

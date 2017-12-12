@@ -3,7 +3,7 @@
 // Declare app level module which depends on views, and components
 var darkskyForecast = angular.module( 'darkskyForecast', [
     'ngRoute',
-    'Components',
+    'components',
     'service.forecastService',
     'service.coordService',
     'darkskyForecast.main',

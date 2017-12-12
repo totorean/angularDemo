@@ -5,9 +5,9 @@
  * @description
  * A directive for rendering an icon from skycons
  */
-Shared.directive( 'skycon', function() {
+components.directive( 'skycon', function() {
     return {
-        restrict: 'E', //E = element, A = attribute, C = class, M = comment   
+        restrict: 'E', //E = element, A = attribute, C = class, M = comment
         replace: true,
         scope: {
             //@ reads the attribute value, = provides two-way binding, & works with functions
@@ -15,7 +15,7 @@ Shared.directive( 'skycon', function() {
             size: '@',
             color: '@'
         },
-        templateUrl: 'skyconView.html',
+        templateUrl: 'app/components/skycon/skyconView.html',
         link: function( $scope, element, attrs ) {
             element[ 0 ].height = $scope.size || 64;
             element[ 0 ].width = $scope.size || 64;

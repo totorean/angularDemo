@@ -1,5 +1,13 @@
 <div class="forecast-view">
-    <skycon icon={{location.icon}}></skycon>
-    <p>{{location.temperature}}&#176;</p>
-    <p>{{location.label}}</p>
+    <div class="forecast-summary">
+        <skycon icon={{location.icon}}></skycon>
+        <p>{{location.temperature}}&#176;</p>
+        <p>{{location.summary}}</p>
+        <br/>
+    </div>
+    <div class="forecast-details">{{location.description}}</div>
+    <div class="forecast-indexes">
+        <div ng-repeat="index in location.indexes" class="index">{{index.label}}:<span
+                class="value">&nbsp{{index.value}}</span></div>
+    </div>
 </div>
