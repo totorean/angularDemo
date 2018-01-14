@@ -1,12 +1,13 @@
 /**
  * @ngdoc directive
  * @name location
+ * @restrict 'E'
  *
  * @description
  * A directive for rendering an icon with label underneath and a tooltip
  *
  */
-components.directive( 'location', function() {
+components.directive('location', function () {
     return {
         restrict: 'E', //E = element, A = attribute, C = class, M = comment
         replace: true,
@@ -17,7 +18,6 @@ components.directive( 'location', function() {
             icon: '@'
         },
         templateUrl: 'app/components/location/locationView.html',
-        link: function( $scope, element, attrs ) {
-        } //DOM manipulation
+        link: function ($scope, element, attrs) {} //DOM manipulation
     }
-} );
+});

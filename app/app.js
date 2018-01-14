@@ -1,25 +1,29 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-var darkskyForecast = angular.module( 'darkskyForecast', [
+var darkskyForecast = angular.module('darkskyForecast', [
     'ngRoute',
     'components',
-    'service.forecastService',
-    'service.coordService',
-    'darkskyForecast.main',
-    'darkskyForecast.forecast'
-] )
-    .config( [ '$locationProvider', '$routeProvider', function( $locationProvider, $routeProvider ) {
-        $locationProvider.hashPrefix( '!' );
-        $routeProvider.otherwise( {
-            redirectTo: '/main'
-        } );
-    } ] )
-    .constant( "GOOGLE_API", {
+    'services'
+])
+    .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
+        $routeProvider
+            .when('/', {
+                templateUrl: 'app/sections/main/mainView.html',
+                controller: 'mainController'
+            })
+            .when('/forecast/:location', {
+                templateUrl: 'app/sections/forecast/forecastView.html',
+                controller: 'forecastController'
+            });
+        //no more hash bang
+        $locationProvider.html5Mode(true);
+    }])
+    .constant("GOOGLE_API", {
         URL: "https://maps.googleapis.com/maps/api/geocode/json",
         KEY: "AIzaSyCbvUaQU0NUgFosiwPubwE_w-P2SDyoi00"
-    } )
-    .constant( "DARKSKY_API", {
+    })
+    .constant("DARKSKY_API", {
         URL: "https://api.darksky.net/forecast/",
         KEY: "f703ce2aafdeab5479f4543700089236"
-    } );
+    });

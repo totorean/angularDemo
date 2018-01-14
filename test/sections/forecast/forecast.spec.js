@@ -1,13 +1,16 @@
 describe('Forecast controller', function () {
-    beforeEach(module('darkskyForecast.forecast'));
+    beforeEach(module('darkskyForecast'));
+    beforeEach(module('services'));
+    beforeEach(module('components'));
 
-    var scope, $routeParams, createCtrl;
+    var scope, $routeParams, createCtrl, $httpBackend;;
 
-    beforeEach(inject(function ($rootScope, _$routeParams_, $controller) {
+    beforeEach(inject(function ($rootScope, _$routeParams_, $controller, _$httpBackend_) {
         scope = $rootScope.$new();
         $routeParams = _$routeParams_;
+        $httpBackend = _$httpBackend_;
         createCtrl = function () {
-            return $controller('ForecastCtrl', {
+            return $controller('forecastController', {
                 $scope: scope,
                 _$routeParams_: $routeParams
             })
