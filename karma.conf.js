@@ -1,8 +1,8 @@
 // Karma configuration
 // Generated on Sun Mar 12 2017 13:14:50 GMT+0200 (GTB Standard Time)
 
-module.exports = function (config) {
-    config.set({
+module.exports = function( config ) {
+    config.set( {
 
         // base path that will be used to resolve all patterns (eg. files, exclude)
         basePath: '',
@@ -10,7 +10,7 @@ module.exports = function (config) {
 
         // frameworks to use
         // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-        frameworks: ['jasmine'],
+        frameworks: [ 'jasmine' ],
 
 
         // list of files / patterns to load in the browser
@@ -23,8 +23,8 @@ module.exports = function (config) {
             './app/sections/main/locationsService.js',
             './app/sections/forecast/forecastController.js',
             './app/components/Components.js',
-            './app/services/Services.js',
             './app/components/location/locationDirective.js',
+            './app**/*.html',
             './test/**/*.js'
         ],
 
@@ -35,13 +35,23 @@ module.exports = function (config) {
 
         // preprocess matching files before serving them to the browser
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-        preprocessors: {},
+        preprocessors: {
+            '**/*.html': [ 'html2js' ]
+        },
+
+        html2JsPreprocessor: {
+            // or define a custom transform function
+            processPath: function( filePath ) {
+                // Drop the file extension
+                return filePath.replace( /\.html$/, '' );
+            }
+        },
 
 
         // test results reporter to use
         // possible values: 'dots', 'progress'
         // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-        reporters: ['progress'],
+        reporters: [ 'progress' ],
 
 
         // web server port
@@ -63,7 +73,7 @@ module.exports = function (config) {
 
         // start these browsers
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-        browsers: ['Chrome'],
+        browsers: [ 'Chrome' ],
 
 
         // Continuous Integration mode
@@ -72,6 +82,6 @@ module.exports = function (config) {
 
         // Concurrency level
         // how many browser should be started simultaneous
-        concurrency: Infinity
-    })
+        concurrency: 3
+    } )
 }

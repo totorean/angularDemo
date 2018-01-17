@@ -7,7 +7,7 @@
  */
 'use strict';
 
-services.service('forecastService', ['$q', '$http', '$sce', 'DARKSKY_API', function ($q, $http, $sce, DARKSKY_API) {
+darkskyForecast.service( 'forecastService', [ '$q', '$http', '$sce', 'DARKSKY_API', function( $q, $http, $sce, DARKSKY_API ) {
 
     /**
      * @ngdoc method
@@ -18,28 +18,28 @@ services.service('forecastService', ['$q', '$http', '$sce', 'DARKSKY_API', funct
      * @returns {Object} object containing current weather data
      *
      */
-    this.getWeather = function (coords) {
+    this.getWeather = function( coords ) {
         var deferred = $q.defer();
 
-        var url = [DARKSKY_API.URL, DARKSKY_API.KEY, '/', coords.lat, ',', coords.lng].join('');
-        $http({
-                method: 'GET',
-                timeout: 300000,
-                url: url
-            })
-            .then(function (data) {
+        var url = [ DARKSKY_API.URL, DARKSKY_API.KEY, '/', coords.lat, ',', coords.lng ].join( '' );
+        $http( {
+            method: 'GET',
+            timeout: 300000,
+            url: url
+        } )
+            .then( function( data ) {
                 // check response code
-                if (parseInt(data.status) === 200) {
-                    deferred.resolve(data.data);
+                if ( parseInt( data.status ) === 200 ) {
+                    deferred.resolve( data.data );
                 } else {
-                    deferred.reject(data.status);
+                    deferred.reject( data.status );
                 }
-            })
-            .catch(function (data) {
-                deferred.reject(data.message);
-            });
+            } )
+            .catch( function( data ) {
+                deferred.reject( data.message );
+            } );
 
         //return a promise that needs to be resolved before data can be used
         return deferred.promise;
     }
-    }]);
+} ] );

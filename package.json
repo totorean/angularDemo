@@ -25,7 +25,9 @@
         "jshint": "^2.9.4",
         "karma": "^1.5.0",
         "karma-chrome-launcher": "^2.0.0",
+        "karma-html2js-preprocessor": "^1.1.0",
         "karma-jasmine": "^1.1.0",
+        "karma-ng-html2js-preprocessor": "^1.0.0",
         "run-sequence": "^1.2.2"
     }
 }

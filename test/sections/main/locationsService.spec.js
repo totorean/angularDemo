@@ -1,20 +1,20 @@
-describe('Locations provider', function () {
-    beforeEach(module('darkskyForecast'));
-    beforeEach(module('services'));
-    beforeEach(module('components'));
+describe( '** Locations service **', function() {
+    beforeEach( module( 'darkskyForecast' ) );
 
     var locationsService;
     var $httpBackend;
+    var $rootScope;
 
-    beforeEach(inject(function (_locationsService_, _$httpBackend_) {
+    beforeEach( inject( function( _locationsService_, _$httpBackend_, _$rootScope_ ) {
         locationsService = _locationsService_;
         $httpBackend = _$httpBackend_;
-    }));
+        $rootScope = $rootScope;
+    } ) );
 
-    it("should load the locations", function () {
-        $httpBackend.whenGET(/^\/html\//).respond("<div></div>");
-        $httpBackend.whenGET('app/sections/main/locations.json').respond({
-            locations: [{
+    it( "should load the locations", function() {
+        $httpBackend.when( 'GET', 'app/sections/main/mainView.html' ).passThrough();
+        $httpBackend.when( 'GET', 'app/sections/main/locations.json' ).respond( {
+            locations: [ {
                 tooltip: "Timisoara",
                 label: "Timisoara",
                 icon: "timisoara",
@@ -24,11 +24,12 @@ describe('Locations provider', function () {
                 label: "Cluj-Napoca",
                 icon: "cluj-napoca",
                 id: "cluj"
-            }]
-        });
-        locationsService.getLocations().then(function (locations) {
-            expect(locations.length).toBe(2);
-        });
+            } ]
+        } );
+        locationsService.getLocations().then( function( locationsList ) {
+            expect( locationsList.length ).toBe( 2 );
+        } );
+        $rootScope.$digest();
         $httpBackend.flush();
-    });
-});
+    } );
+} );

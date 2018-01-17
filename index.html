@@ -15,30 +15,28 @@
     <link rel="stylesheet" href="app/components/location/locationStyle.css">
 
     <!--    Dependencies    -->
-    <!--    <script src="node_modules/modernizr/node_modules/"></script>-->
     <script src="node_modules/angular/angular.js"></script>
     <script src="node_modules/angular-route/angular-route.js"></script>
-    <script src="node_modules/skycons/skycons.js"></script>
-    <base href="/">
+    <script src="app/lib/skycons/skycons.js"></script>
+    <!--<base href="/">-->
 </head>
 
 <body>
-    <div ng-view></div>
+<div ng-view></div>
 
-    <!--    Components     -->
-    <script src="app/components/Components.js"></script>
-    <script src="app/components/location/locationDirective.js"></script>
-    <script src="app/components/skycon/skyconDirective.js"></script>
+<!--    Components     -->
+<script src="app/components/Components.js"></script>
+<script src="app/components/location/locationDirective.js"></script>
+<script src="app/components/skycon/skyconDirective.js"></script>
 
-    <!--    Services     -->
-    <script src="app/services/Services.js"></script>
-    <script src="app/services/coordinatesService.js"></script>
-    <script src="app/services/forecastService.js"></script>
+<script src="app/app.js"></script>
+<script src="app/sections/main/mainController.js"></script>
+<script src="app/sections/main/locationsService.js"></script>
+<script src="app/sections/forecast/forecastController.js"></script>
 
-    <script src="app/app.js"></script>
-    <script src="app/sections/main/mainController.js"></script>
-    <script src="app/sections/main/locationsService.js"></script>
-    <script src="app/sections/forecast/forecastController.js"></script>
+<!--    Services     -->
+<script src="app/services/coordinatesService.js"></script>
+<script src="app/services/forecastService.js"></script>
 </body>
 
 </html>
