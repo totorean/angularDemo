@@ -1,56 +1,48 @@
 describe( '** Location directive ** ', function() {
-    beforeEach( module( 'darkskyForecast' ) );
+    beforeEach( module( "darkskyForecast" ) );
     beforeEach( module( 'components' ) );
+    beforeEach( module( 'templates' ) );
 
-    var element;
-    var outerScope;
-    var innerScope;
+    var element, elementAsHtml;
+    var $rootScope;
     var $httpBackend;
+    var $compile;
+    var spy = jasmine.createSpy( 'weatherCallback' );
 
     // Before each test load our darkskyForecast.main module
-    beforeEach( inject( function( $rootScope, $compile, _$httpBackend_ ) {
-        element = angular.element( '<location tooltip={{loc.tooltip}} label={{loc.label}} icon={{loc.icon}} ng-click="weatherCallback()"></location>' );
-        outerScope = $rootScope;
-        $compile( element )( outerScope );
-        innerScope = element.isolateScope();
-        outerScope.$digest();
+    beforeEach( inject( function( _$rootScope_, _$compile_, _$httpBackend_ ) {
+        $rootScope = _$rootScope_;
         $httpBackend = _$httpBackend_;
+        $compile = _$compile_;
     } ) );
 
-    describe( 'HTML element', function() {
-        beforeEach( function() {
-            outerScope.$apply( function() {
-                outerScope.loc = {
-                    tooltip: "Timisoara",
-                    label: "Timisoara",
-                    icon: "timisoara",
-                    id: "timisoara"
-                };
-            } );
+    beforeEach( function() {
+        $rootScope.$apply( function() {
+            $rootScope.loc = {
+                tooltip: "Timisoara",
+                label: "Timisoara",
+                icon: "timisoara"
+            };
+            $rootScope.weatherCallback = spy;
         } );
+        element = $compile( '<location tooltip={{loc.tooltip}} label={{loc.label}} icon={{loc.icon}} ng-click="weatherCallback()"></location>' )( $rootScope );
+        $rootScope.$digest();
+        elementAsHtml = element.html();
+    } );
+
+    describe( 'HTML element', function() {
         it( 'should be rendered correctly', function() {
-            $httpBackend.when( 'GET', 'app/components/location/locationView.html' ).passThrough();
-            expect( element[ 0 ].title ).toBe( 'Timisoara' );
-            expect( element[ 0 ].children[ 0 ].src ).toContain( 'timisoara.png' );
-            expect( element[ 0 ].children[ 1 ].innerHTML ).toBe( 'Timisoara' );
+            expect( elementAsHtml ).toContain( $rootScope.loc.tooltip );
+            expect( elementAsHtml ).toContain( $rootScope.loc.icon );
+            expect( elementAsHtml ).toContain( $rootScope.loc.label );
         } );
     } );
 
     describe( 'when the directive is clicked', function() {
-        var spy = jasmine.createSpy( 'weatherCallback' );
         beforeEach( function() {
-            outerScope.$apply( function() {
-                outerScope.weatherCallback = spy;
-            } );
-            var event = new MouseEvent( 'click', {
-                view: window,
-                bubbles: true,
-                cancelable: true
-            } );
-            element[ 0 ].dispatchEvent( event );
+            element.triggerHandler( 'click' );
         } );
         it( 'the callback should be called', function() {
-            $httpBackend.when( 'GET', 'app/components/location/locationView.html' ).passThrough();
             expect( spy ).toHaveBeenCalled();
         } );
     } );

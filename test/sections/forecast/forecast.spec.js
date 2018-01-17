@@ -1,13 +1,11 @@
 describe( '** Forecast controller **', function() {
     beforeEach( module( 'darkskyForecast' ) );
-    beforeEach( module( 'components' ) );
 
-    var scope, $routeParams, createCtrl, $httpBackend;
+    var scope, $routeParams, createCtrl;
 
-    beforeEach( inject( function( $rootScope, _$routeParams_, $controller, _$httpBackend_ ) {
+    beforeEach( inject( function( $rootScope, _$routeParams_, $controller ) {
         scope = $rootScope.$new();
         $routeParams = _$routeParams_;
-        $httpBackend = _$httpBackend_;
         createCtrl = function() {
             return $controller( 'forecastController', {
                 $scope: scope,
