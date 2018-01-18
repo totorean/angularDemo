@@ -16,7 +16,7 @@ var darkskyForecast = angular.module( 'darkskyForecast', [
                 controller: 'forecastController'
             } );
         //no more hash bang
-        //$locationProvider.html5Mode( true );
+        $locationProvider.html5Mode( true );
     } ] )
     .constant( "GOOGLE_API", {
         URL: "https://maps.googleapis.com/maps/api/geocode/json",
